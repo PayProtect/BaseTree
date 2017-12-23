@@ -1,0 +1,122 @@
+CREATE TABLE `Name` (
+  `uid` UUID,
+  `note_list` REFERENCES NoteRef (uid),
+  `date` DATE,
+  `first_name` VARCHAR,
+  `surname` VARCHAR,
+  `suffix` VARCHAR,
+  `title` VARCHAR,
+  `name_type` VARCHAR,
+  `prefix` VARCHAR,
+  `patronymic` VARCHAR
+);
+
+CREATE TABLE `Place` (
+  `uid` UUID,
+  `title` VARCHAR,
+  `placeref_list` Type,
+  `name` VARCHAR,
+  `alt_names` VARCHAR,
+  `place_type` VARCHAR,
+  `code` VARCHAR,
+  `media_list` REFERENCES MediaRef (uid),
+  `note_list` REFERENCES NoteRef(uid),
+  `change` VARCHAR
+);
+
+CREATE TABLE `Event` (
+  `uid` UUID,
+  `type` VARCHAR,
+  `date` DATE,
+  `description` VARCHAR,
+  `note_list` REFERENCES  NoteRef(uid),
+  `media_list` REFERENCES MediaRef (uid),
+  `change` VARCHAR
+);
+
+CREATE TABLE `Person` (
+  `uid` UUID,
+  `gender` VARCHAR,
+  `primary_name` VARCHAR,
+  `alternate_names` VARCHAR,
+  `death_date` DATE,
+  `birth_date` DATE,
+  `event_ref_list` REFERENCES EventRef(uid),
+  `family_list` Type,
+  `parent_family_list` REFERENCES Family(uid),
+  `media_list` REFERENCES MediaRef(uid),
+  `address_list` REFERENCES AddressRef(uid),
+  `urls` VARCHAR,
+  `note_list` REFERENCES NoteRef(uid),
+  `change` VARCHAR,
+  `person_ref_list` Type
+);
+
+CREATE TABLE `EventRef` (
+  `uid` UUID,
+  `ref_to_event` Type,
+  `note_list` Type
+);
+
+CREATE TABLE `ChildRef` (
+  `uid` UUID,
+  `Person_ref` REFERENCES Person(uid),
+  `note_list` Type
+);
+
+CREATE TABLE `Media` (
+  `uid` UUID,
+  `path` VARCHAR,
+  `mediafile` BLOB,
+  `description` VARCHAR,
+  `checksum` VARCHAR,
+  `change` VARCHAR
+);
+
+CREATE TABLE `Note` (
+  `uid` UUID,
+  `text` VARCHAR,
+  `format` VARCHAR,
+  `type` VARCHAR,
+  `change` VARCHAR
+);
+
+CREATE TABLE `MediaRef` (
+  `uid` UUID,
+  `ref_to_media` REFERENCES Media(uid),
+  `note_list` REFERENCES NoteRef(uid)
+);
+
+CREATE TABLE `NoteRef` (
+  `uid` UUID,
+  `ref_to_note` REFERENCES Note(uid)
+);
+
+CREATE TABLE `Family` (
+  `uid` UUID,
+  `father_handle` REFERENCES Person(uid),
+  `mother_handle` REFERENCES Person (uid),
+  `child_ref_list` REFERENCES ChildRef(uid),
+  `event_ref_list` REFERENCES EventRef(uid),
+  `media_list` REFERENCES MediaRef(uid),
+  `note_list` NoteRef(uid),
+  `change` VARCHAR
+);
+
+CREATE TABLE `AddressRef` (
+  `uid` UUID,
+  `date` DATE,
+  `location` REFERENCES Location (uid),
+  `note_list` REFERENCES NoteRef(uid)
+);
+
+CREATE TABLE `Location` (
+  `uid` UUID,
+  `country` VARCHAR,
+  `city` VARCHAR,
+  `state` VARCHAR,
+  `street` VARCHAR,
+  `postal` VARCHAR,
+  `phone` VARCHAR
+);
+
