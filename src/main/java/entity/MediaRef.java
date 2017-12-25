@@ -14,7 +14,11 @@ public class MediaRef {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer uid;
 
-//  `ref_to_media` REFERENCES Media(uid),
-//    `note_list` REFERENCES NoteRef(uid)
+    @Column
+    public MediaRef media_ref;
+
+    @Column
+    public NoteRef note_list;
+
 
 }

@@ -33,14 +33,25 @@ public class Person {
 
     @Column
     public Date birth_date;
-    /* `event_ref_list` REFERENCES EventRef(uid),*
-    `   family_list` Type,
-    `parent_family_list` REFERENCES Family(uid),
-     `media_list` REFERENCES MediaRef(uid),
-    `address_list` REFERENCES AddressRef(uid),
-    `person_ref_list` Type
-          `note_list` REFERENCES NoteRef(uid),
-     */
+
+    @Column
+    public EventRef event_ref_list;
+
+    @Column
+    public Family parent_family_list;
+
+    @Column
+    public MediaRef media_list;
+
+    @Column
+    public AddressRef address_list;
+
+    @Column
+    public Person person_ref_list;
+
+    @Column
+    public String note_list;
+
 
     @Column
     public String urls;

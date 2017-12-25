@@ -14,7 +14,7 @@ public class ChildRef {
     public Integer uid;
 
     @Column
-    public Person Person_ref
+    public Person Person_ref;
 
     @Column
     public NoteRef note_list;

@@ -18,7 +18,7 @@ public class Family {
     @Column
     public NoteRef note_list;
 
-    @Override
+    @Column
      public MediaRef media_list;
 
     @Column

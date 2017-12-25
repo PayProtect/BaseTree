@@ -38,17 +38,7 @@ public class Place {
     public  NoteRef note_list;
 
     @Column
-
-
-
-
-            `name` VARCHAR,
-            `alt_names` VARCHAR,
-            `place_type` VARCHAR,
-            `code` VARCHAR,
-            `media_list` REFERENCES MediaRef (uid),
-    `note_list` REFERENCES NoteRef(uid),
-    `change` VARCHAR
+    public String change;
 
 
 }

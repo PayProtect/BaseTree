@@ -16,9 +16,8 @@ public class NoteRef {
     @Column
     public NoteRef note_list;
 
+    @Column
+    public MediaRef media_ref;
 
-/*`ref_to_media` REFERENCES Media(uid),
-
-  */
 
 }
