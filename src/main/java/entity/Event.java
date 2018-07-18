@@ -2,16 +2,22 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 @Entity
-@Table( name = "Event" )
+@Table
 public class Event {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer uid;
+
+    @ManyToOne
+    @JoinColumn
+    public  Event event_ref;
 
     @Column
     public  String type;
@@ -22,11 +28,12 @@ public class Event {
     @Column
     public String description;
 
-    @Column
-    public NoteRef note_list;
 
-    @Column
-    public MediaRef media_list;
+    @OneToMany(targetEntity=NoteRef.class, mappedBy="note_list")
+    public Set<NoteRef> note_list;
+
+    @OneToMany(targetEntity=MediaRef.class, mappedBy="media_ref")
+    public Set<MediaRef> media_ref;
 
     @Column
     public String change;
@@ -63,27 +70,28 @@ public class Event {
         this.description = description;
     }
 
-    public NoteRef getNote_list() {
-        return note_list;
-    }
-
-    public void setNote_list(NoteRef note_list) {
-        this.note_list = note_list;
-    }
-
-    public MediaRef getMedia_list() {
-        return media_list;
-    }
-
-    public void setMedia_list(MediaRef media_list) {
-        this.media_list = media_list;
-    }
-
     public String getChange() {
         return change;
     }
 
     public void setChange(String change) {
         this.change = change;
+    }
+
+
+    public Set<NoteRef> getNote_list() {
+        return note_list;
+    }
+
+    public void setNote_list(Set<NoteRef> note_list) {
+        this.note_list = note_list;
+    }
+
+    public Set<MediaRef> getMedia_ref() {
+        return media_ref;
+    }
+
+    public void setMedia_ref(Set<MediaRef> media_ref) {
+        this.media_ref = media_ref;
     }
 }

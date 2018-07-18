@@ -3,18 +3,23 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 @Entity
-@Table( name = "Person" )
+@Table
 public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer uid;
+
+    @ManyToOne
+    @JoinColumn
+    public Person handle;
 
     @Column
     public String gender;
@@ -31,23 +36,23 @@ public class Person {
     @Column
     public Date birth_date;
 
-    @Column
-    public EventRef event_ref_list;
+    @OneToMany(targetEntity=EventRef.class, mappedBy="event_ref_list")
+    public Set<EventRef> event_ref_list;
 
-    @Column
-    public Family parent_family_list;
+    @OneToMany(targetEntity=Family.class, mappedBy="family_ref")
+    public Set<Family> parent_family_list;
 
-    @Column
-    public MediaRef media_list;
+    @OneToMany(targetEntity=MediaRef.class, mappedBy="media_ref")
+    public Set<MediaRef> media_ref;
 
-    @Column
-    public AddressRef address_list;
+    @OneToMany(targetEntity=AddressRef.class, mappedBy="address_list")
+    public Set<AddressRef> address_list;
 
-    @Column
-    public Person person_ref_list;
+    /*@OneToMany(targetEntity=Person.class, mappedBy="person_ref_list")
+    public Set<Person> person_ref_list; I have lost idea, have to review ideas*/
 
-    @Column
-    public String note_list;
+    @OneToMany(targetEntity=NoteRef.class, mappedBy="media_ref")
+    public Set<NoteRef> note_list;
 
 
     @Column
@@ -55,6 +60,7 @@ public class Person {
 
     @Column
     public String change;
+
 
     public Integer getUid() {
         return uid;
@@ -104,51 +110,44 @@ public class Person {
         this.birth_date = birth_date;
     }
 
-    public EventRef getEvent_ref_list() {
+    public Set<EventRef> getEvent_ref_list() {
         return event_ref_list;
     }
 
-    public void setEvent_ref_list(EventRef event_ref_list) {
+    public void setEvent_ref_list(Set<EventRef> event_ref_list) {
         this.event_ref_list = event_ref_list;
     }
 
-    public Family getParent_family_list() {
+    public Set<Family> getParent_family_list() {
         return parent_family_list;
     }
 
-    public void setParent_family_list(Family parent_family_list) {
+    public void setParent_family_list(Set<Family> parent_family_list) {
         this.parent_family_list = parent_family_list;
     }
 
-    public MediaRef getMedia_list() {
-        return media_list;
+    public Set<MediaRef> getMedia_ref() {
+        return media_ref;
     }
 
-    public void setMedia_list(MediaRef media_list) {
-        this.media_list = media_list;
+    public void setMedia_ref(Set<MediaRef> media_ref) {
+        this.media_ref = media_ref;
     }
 
-    public AddressRef getAddress_list() {
+    public Set<AddressRef> getAddress_list() {
         return address_list;
     }
 
-    public void setAddress_list(AddressRef address_list) {
+    public void setAddress_list(Set<AddressRef> address_list) {
         this.address_list = address_list;
     }
 
-    public Person getPerson_ref_list() {
-        return person_ref_list;
-    }
 
-    public void setPerson_ref_list(Person person_ref_list) {
-        this.person_ref_list = person_ref_list;
-    }
-
-    public String getNote_list() {
+    public Set<NoteRef> getNote_list() {
         return note_list;
     }
 
-    public void setNote_list(String note_list) {
+    public void setNote_list(Set<NoteRef> note_list) {
         this.note_list = note_list;
     }
 
@@ -167,5 +166,9 @@ public class Person {
     public void setChange(String change) {
         this.change = change;
     }
+
+
+
+
 
 }

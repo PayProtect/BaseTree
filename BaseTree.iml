@@ -4,6 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
+          <unit-entry name="META-INF:hibernate.cfg.xml" value="76872145-9e68-472f-903b-9e282bcbdf90" />
           <unit-entry name="hibernate.cfg.xml" value="76872145-9e68-472f-903b-9e282bcbdf90" />
         </datasource-map>
         <naming-strategy-map />
@@ -15,7 +16,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
-          <factory-entry name="H2" />
+          <factory-entry name="H2" value="f9551f8f-532a-4230-9e2e-000f193013f4" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>

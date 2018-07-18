@@ -8,7 +8,7 @@ import java.sql.Blob;
  */
 
 @Entity
-@Table( name = "Media" )
+@Table
 public class Media {
 
     @Id

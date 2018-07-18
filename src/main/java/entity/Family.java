@@ -1,12 +1,13 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 @Entity
-@Table( name = "Family" )
+@Table
 public class Family {
 
 
@@ -15,26 +16,39 @@ public class Family {
     public Integer uid;
 
 
-    @Column
-    public NoteRef note_list;
+    @ManyToOne
+    @JoinColumn
+    public Family family_ref;
 
-    @Column
-     public MediaRef media_list;
+
+    @OneToMany(targetEntity=NoteRef.class, mappedBy="note_list")
+    public Set<NoteRef> note_list;
+
+    @OneToMany(targetEntity=MediaRef.class, mappedBy="media_ref")
+    public Set<MediaRef> media_ref;
 
     @Column
     public String change;
 
-    @Column
-    public  Person father_handle;
+    @OneToMany(targetEntity=Person.class, mappedBy="handle")
+    public  Set<Person> father_handle;
 
-    @Column
-    public  Person mother_handle;
+    @OneToMany(targetEntity=Person.class, mappedBy="handle")
+    public  Set<Person> mother_handle;
 
-    @Column
-    public ChildRef child_ref_list;
+    @OneToMany(targetEntity=ChildRef.class, mappedBy="person_ref")
+    public Set<ChildRef> child_ref_list;
 
-    @Column
-    public EventRef event_ref_list;
+    @OneToMany(targetEntity=EventRef.class, mappedBy="event_ref_list")
+    public Set<EventRef> event_ref_list;
+
+    public Set<EventRef> getEvent_ref_list() {
+        return event_ref_list;
+    }
+
+    public void setEvent_ref_list(Set<EventRef> event_ref_list) {
+        this.event_ref_list = event_ref_list;
+    }
 
     public Integer getUid() {
         return uid;
@@ -44,20 +58,20 @@ public class Family {
         this.uid = uid;
     }
 
-    public NoteRef getNote_list() {
+    public Set<NoteRef> getNote_list() {
         return note_list;
     }
 
-    public void setNote_list(NoteRef note_list) {
+    public void setNote_list(Set<NoteRef> note_list) {
         this.note_list = note_list;
     }
 
-    public MediaRef getMedia_list() {
-        return media_list;
+    public Set<MediaRef> getMedia_ref() {
+        return media_ref;
     }
 
-    public void setMedia_list(MediaRef media_list) {
-        this.media_list = media_list;
+    public void setMedia_ref(Set<MediaRef> media_ref) {
+        this.media_ref = media_ref;
     }
 
     public String getChange() {
@@ -68,35 +82,31 @@ public class Family {
         this.change = change;
     }
 
-    public Person getFather_handle() {
+    public Set<Person> getFather_handle() {
         return father_handle;
     }
 
-    public void setFather_handle(Person father_handle) {
+    public void setFather_handle(Set<Person> father_handle) {
         this.father_handle = father_handle;
     }
 
-    public Person getMother_handle() {
+    public Set<Person> getMother_handle() {
         return mother_handle;
     }
 
-    public void setMother_handle(Person mother_handle) {
+    public void setMother_handle(Set<Person> mother_handle) {
         this.mother_handle = mother_handle;
     }
 
-    public ChildRef getChild_ref_list() {
+    public Set<ChildRef> getChild_ref_list() {
         return child_ref_list;
     }
 
-    public void setChild_ref_list(ChildRef child_ref_list) {
+    public void setChild_ref_list(Set<ChildRef> child_ref_list) {
         this.child_ref_list = child_ref_list;
     }
 
-    public EventRef getEvent_ref_list() {
-        return event_ref_list;
-    }
 
-    public void setEvent_ref_list(EventRef event_ref_list) {
-        this.event_ref_list = event_ref_list;
-    }
+
+
 }

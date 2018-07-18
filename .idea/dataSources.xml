@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1390355862">
+  <component name="DataSourceManagerImpl" format="xml" hash="709485220">
     <data-source source="LOCAL" name="H2 - src" uuid="76872145-9e68-472f-903b-9e282bcbdf90">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:$PROJECT_DIR$/src</jdbc-url>
+      <jdbc-url>jdbc:h2:~/src</jdbc-url>
     </data-source>
   </component>
 </project>

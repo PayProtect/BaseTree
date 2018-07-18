@@ -7,16 +7,20 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table( name = "Location" )
+@Table
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer uid;
 
+
+    @ManyToOne
+    @JoinColumn
+    public  Location location;
+
     @Column
     public String country;
-
     @Column
     public String city;
     @Column
@@ -82,5 +86,13 @@ public class Location {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }

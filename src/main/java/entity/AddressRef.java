@@ -2,26 +2,31 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 @Entity
-@Table( name = "AddressRef" )
+@Table
 public class AddressRef {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer uid;
 
+    @OneToOne
+    @JoinColumn
+    public  AddressRef address_list;
+
     @Column
     public Date date;
 
-    @Column
-    public Location location;
+    @OneToMany(targetEntity = Location.class, mappedBy = "location")
+    public Set<Location> location;
 
-    @Column
-    public  NoteRef note_list;
+    @OneToMany(targetEntity = NoteRef.class, mappedBy = "note_list")
+    public Set<NoteRef> note_list;
 
     public Integer getUid() {
         return uid;
@@ -39,19 +44,20 @@ public class AddressRef {
         this.date = date;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public NoteRef getNote_list() {
+    public Set<NoteRef> getNote_list() {
         return note_list;
     }
 
-    public void setNote_list(NoteRef note_list) {
+    public void setNote_list(Set<NoteRef> note_list) {
         this.note_list = note_list;
     }
+
+    public Set<Location> getLocation() {
+        return location;
+    }
+
+    public void setLocation(Set<Location> location) {
+        this.location = location;
+    }
 }
+

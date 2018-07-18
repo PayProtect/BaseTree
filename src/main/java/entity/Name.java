@@ -2,13 +2,14 @@ package entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 
 @Entity
-@Table( name = "Name" )
+@Table
 public class Name {
 
 
@@ -35,8 +36,10 @@ public class Name {
     public String prefix;
     @Column
     public String patronymic;
-    @Column
-    public NoteRef note_list;
+
+
+    @OneToMany(targetEntity=NoteRef.class, mappedBy="note_list")
+    public Set<NoteRef> note_list;
 
     public Integer getUid() {
         return uid;
@@ -110,11 +113,12 @@ public class Name {
         this.patronymic = patronymic;
     }
 
-    public NoteRef getNote_list() {
+
+    public Set<NoteRef> getNote_list() {
         return note_list;
     }
 
-    public void setNote_list(NoteRef note_list) {
+    public void setNote_list(Set<NoteRef> note_list) {
         this.note_list = note_list;
     }
 }

@@ -2,11 +2,12 @@ package entity;
 
 import javax.persistence.*;
 
+
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 @Entity
-@Table( name = "Note" )
+@Table
 public class Note {
 
     @Id

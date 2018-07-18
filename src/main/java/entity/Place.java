@@ -1,12 +1,13 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by Yakubovsky Dmitry on 24.12.2017.
  */
 @Entity
-@Table( name = "Place" )
+@Table
 public class Place {
 
     @Id
@@ -16,8 +17,9 @@ public class Place {
     @Column
     public String  title;
 
-    @Column
-    public Place place_ref_list;
+    @OneToOne
+    @JoinColumn
+    public Place place_ref;
 
     @Column
     public  String name;
@@ -31,14 +33,15 @@ public class Place {
     @Column
     public String code;
 
-    @Column
-    public MediaRef media_list;
+    @OneToMany(targetEntity=MediaRef.class, mappedBy="media_ref")
+    public Set<MediaRef> media_ref;
 
-    @Column
-    public  NoteRef note_list;
+    @OneToMany(targetEntity=NoteRef.class, mappedBy="note_list")
+    public Set<NoteRef> note_list;
 
     @Column
     public String change;
+
 
     public Integer getUid() {
         return uid;
@@ -56,12 +59,12 @@ public class Place {
         this.title = title;
     }
 
-    public Place getPlace_ref_list() {
-        return place_ref_list;
+    public Place getPlace_ref() {
+        return place_ref;
     }
 
-    public void setPlace_ref_list(Place place_ref_list) {
-        this.place_ref_list = place_ref_list;
+    public void setPlace_ref(Place place_ref) {
+        this.place_ref = place_ref;
     }
 
     public String getName() {
@@ -96,19 +99,19 @@ public class Place {
         this.code = code;
     }
 
-    public MediaRef getMedia_list() {
-        return media_list;
+    public Set<MediaRef> getMedia_ref() {
+        return media_ref;
     }
 
-    public void setMedia_list(MediaRef media_list) {
-        this.media_list = media_list;
+    public void setMedia_ref(Set<MediaRef> media_ref) {
+        this.media_ref = media_ref;
     }
 
-    public NoteRef getNote_list() {
+    public Set<NoteRef> getNote_list() {
         return note_list;
     }
 
-    public void setNote_list(NoteRef note_list) {
+    public void setNote_list(Set<NoteRef> note_list) {
         this.note_list = note_list;
     }
 
@@ -119,4 +122,8 @@ public class Place {
     public void setChange(String change) {
         this.change = change;
     }
+
+
+
+
 }
