@@ -1,6 +1,7 @@
 package service;
 
-import entity.Note;
+import entity.BaseEntity;
+import entity.impl.Note;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,10 +13,11 @@ import org.jboss.logging.Logger;
 /**
  * Created by SBT-Yakubovsky-DN on 25.12.2017.
  */
-public class AppClass {
+
+public class AppClass<T extends BaseEntity> {
 
 
-    private static final Logger LOGGER = Logger.getLogger("Start");
+    private static final Logger LOGGER = Logger.getLogger(AppClass.class);
 
 
     public static void main(String[] args) {
@@ -26,7 +28,7 @@ public class AppClass {
         try {
             Configuration configuration = new Configuration();
             configuration.configure("hibernate.cfg.xml");
-            configuration.addAnnotatedClass(entity.Note.class);
+            configuration.addAnnotatedClass(Note.class);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             configuration.configure();
@@ -49,11 +51,27 @@ public class AppClass {
             session.save(note);
             transaction.commit();
 
-         } catch (Exception e) {
+        } catch (Exception e) {
             if (session.getTransaction().isActive()){
                 session.getTransaction().rollback();
             }
-             throw e;
+            throw e;
+
+        }
+    }
+
+    private void abstractPersist(Session session, T in) throws Exception{
+        try{
+            Transaction transaction = session.getTransaction();
+            transaction.begin();
+            session.save(in);
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction().isActive()){
+                session.getTransaction().rollback();
+            }
+            throw e;
 
         }
     }

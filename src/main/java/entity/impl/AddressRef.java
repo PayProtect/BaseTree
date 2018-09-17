@@ -1,4 +1,6 @@
-package entity;
+package entity.impl;
+
+import entity.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,7 +11,7 @@ import java.util.Set;
  */
 @Entity
 @Table
-public class AddressRef {
+public class AddressRef implements BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
