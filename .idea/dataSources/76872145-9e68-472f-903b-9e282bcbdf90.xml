@@ -51,7 +51,7 @@
       <DataType>INTEGER(10)|4</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
-      <DefaultExpression>(NEXT VALUE FOR CORE.SYSTEM_SEQUENCE_8A312548_24F8_46FE_A74C_C1DE5293E6D0)</DefaultExpression>
+      <DefaultExpression>(NEXT VALUE FOR CORE.SYSTEM_SEQUENCE_99D3B5BE_460E_48A1_B5DC_A6D524E07B5C)</DefaultExpression>
     </column>
     <column id="37" parent="6" name="CHANGE">
       <Position>2</Position>
