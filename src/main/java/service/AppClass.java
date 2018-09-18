@@ -65,7 +65,7 @@ public class AppClass {
 
         try{ Configuration configuration = new Configuration();
             configuration.configure("hibernate.cfg.xml");
-            configuration.addAnnotatedClass(Note.class);
+            configuration.addAnnotatedClass(in.getClass());
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             configuration.configure();
