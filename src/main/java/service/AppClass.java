@@ -43,7 +43,7 @@ public class AppClass {
             ServiceClass.saveObj(note);
 
 
-            Set<NoteRef> nf  = new HashSet<>();
+            /*Set<NoteRef> nf  = new HashSet<>();
             Set<MediaRef> mf  = new HashSet<>();
             Event event = new Event();
             event.setChange("1");
@@ -53,7 +53,7 @@ public class AppClass {
             event.setMedia_ref(mf);
             event.setNote_list(nf);
             event.setUid(123);
-            ServiceClass.saveObj(event);
+            ServiceClass.saveObj(event);*/
 
         } catch (Exception e) { LOGGER.log(Logger.Level.INFO, e.getMessage(),e);  }
     }
